@@ -26,9 +26,3 @@ FRONTEND ARCHITECTURE:-
 | `/admin`           | Admin dashboard |
 
 
-
-git add .
-
-git commit -m "message"
-
-git push -u origin <branch-name>
