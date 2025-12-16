@@ -25,3 +25,4 @@ FRONTEND ARCHITECTURE:-
 | `/bookmarks`       | Saved problems  |
 | `/admin`           | Admin dashboard |
 
+
