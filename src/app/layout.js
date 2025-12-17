@@ -1,7 +1,6 @@
-'use client'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata = {
-//   title: "CodeSlayer",
-//   description: "Where Coders Become Slayers — practice DSA, build consistency, and transform problem-solving into a habit.",
-// };
+export const metadata = {
+  title: "CodeSlayer",
+  description:
+    "Where Coders Become Slayers — practice DSA, build consistency, and transform problem-solving into a habit.",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+        <Providers>
           {children}
-        </GoogleOAuthProvider>
+        </Providers>
       </body>
     </html>
   );
