@@ -10,6 +10,7 @@ import { useState } from "react";
 // Assuming you created this file at '@/lib/axiosInstance.js'
 import { openApi } from '@/lib/api'; 
 import { useRouter } from "next/navigation";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 
 // --- 1. Validation Schema using Yup ---
 const SignupSchema = Yup.object().shape({
@@ -113,12 +114,15 @@ function SignupPage() {
     </div>
 
     {/* Google Signup */}
-    <button className="w-full flex items-center justify-center gap-2 border border-zinc-700 hover:border-mainCol/70 py-2.5 rounded-xl mb-4 transition">
+    {/* <button className="w-full flex items-center justify-center gap-2 border border-zinc-700 hover:border-mainCol/70 py-2.5 rounded-xl mb-4 transition">
       <FcGoogle size={20} />
       <span className="font-medium text-sm text-white">
         Sign up with Google
       </span>
-    </button>
+    </button> */}
+      <div className="flex justify-center mx-auto mb-4">
+      <GoogleAuthButton />
+      </div>
 
     <div className="flex items-center gap-3 mb-4">
       <div className="flex-1 h-px bg-zinc-800" />

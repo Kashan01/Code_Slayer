@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import {openApi} from "@/lib/api";
 import { useRouter } from "next/navigation";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 
 // --- 1. Validation Schema using Yup ---
 const LoginSchema = Yup.object().shape({
@@ -92,14 +93,18 @@ return (
       </div>
 
       {/* Google Login */}
-      <button className="w-full flex items-center justify-center gap-2 border border-zinc-700 hover:border-mainCol/70 py-2.5 rounded-xl mb-4 transition">
+        <div className="flex justify-center mx-auto mb-4">
+           <GoogleAuthButton />
+           </div>
+
+      {/* <button className="w-full flex items-center justify-center gap-2 border border-zinc-700 hover:border-mainCol/70 py-2.5 rounded-xl mb-4 transition">
         <FcGoogle size={20} />
         <span className="font-medium text-sm text-white">
           Continue with Google
         </span>
-      </button>
+      </button> */}
 
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-4 mt-5">
         <div className="flex-1 h-px bg-zinc-800" />
         <span className="text-zinc-500 text-xs">OR</span>
         <div className="flex-1 h-px bg-zinc-800" />
@@ -202,6 +207,7 @@ return (
           Create one
         </Link>
       </p>
+
     </motion.div>
   </div>
 );
