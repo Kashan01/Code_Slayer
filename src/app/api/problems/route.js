@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import Problem from "@/models/Problem";
+import User from "@/models/User";
+import jwt from "jsonwebtoken";
+import { headers } from "next/headers";
+
 
 export async function GET(request) {
   try {
@@ -66,5 +70,59 @@ export async function GET(request) {
       { error: "Internal Server Error" },
       { status: 500 }
     );
+  }
+}
+
+
+export async function POST(request) {
+  try {
+    await connectDB();
+
+    // 1. AUTHENTICATION & ADMIN CHECK
+    // Get token from header: "Authorization: Bearer <token>"
+    const headersList = await headers();
+    const authHeader = headersList.get("authorization");
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const token = authHeader.split(" ")[1];
+    
+    // Verify Token
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      return NextResponse.json({ error: "Invalid Token" }, { status: 401 });
+    }
+
+    // Check if User is Admin in DB
+    const user = await User.findById(decoded.id);
+    if (!user || !user.isAdmin) {
+      return NextResponse.json({ error: "Forbidden: Admins only" }, { status: 403 });
+    }
+
+    // 2. CREATE THE PROBLEM
+    const body = await request.json();
+
+    // Basic validation (ensure unique slug)
+    const existingProblem = await Problem.findOne({ slug: body.slug });
+    if (existingProblem) {
+      return NextResponse.json({ error: "Slug must be unique" }, { status: 400 });
+    }
+
+    // Create new problem
+    const newProblem = await Problem.create(body);
+
+    return NextResponse.json({
+      success: true,
+      message: "Problem created successfully",
+      problem: newProblem
+    }, { status: 201 });
+
+  } catch (error) {
+    console.error("Create Problem Error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
