@@ -187,7 +187,7 @@ return (
         <button
           type="submit"
           disabled={isSubmitting || !formik.isValid}
-          className={`w-full py-2.5 rounded-xl font-semibold transition text-sm text-white ${
+          className={`w-full mt-12 py-2.5 rounded-xl font-semibold transition text-sm text-white ${
             isSubmitting || !formik.isValid
               ? "bg-zinc-600 cursor-not-allowed"
               : "bg-mainCol hover:opacity-90"
