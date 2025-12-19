@@ -34,6 +34,12 @@ const UserSchema = new mongoose.Schema({
     enum: ["email", "google"], // Only allows these two values
     default: "email",
   },
+
+  // --- NEW FIELD: ADMIN FLAG ---
+  isAdmin: {
+    type: Boolean,
+    default: false // Everyone starts as a normal user by default
+  },
 }, { timestamps: true });
 
 // Prevent model overwrite upon hot-reload in Next.js
