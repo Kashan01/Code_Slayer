@@ -8,6 +8,7 @@ const ProblemSchema = new mongoose.Schema({
   category: { type: String, required: true },
   order: { type: Number, required: true, unique: true },
   videoId: { type: String, default: "" },
+  companyTags: [String],
 
   // --- Single Problem View Fields (NEW) ---
   description: { 

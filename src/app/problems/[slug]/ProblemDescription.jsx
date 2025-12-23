@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
+import { Building2 } from "lucide-react";
 
 export default function ProblemDescription({ problem }) {
+  console.log(problem)
   return (
     <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }}>
       <div className="flex items-center gap-3 mb-6">
@@ -44,6 +46,34 @@ export default function ProblemDescription({ problem }) {
             </div>
           </div>
         ))}
+{problem.companyTags && problem.companyTags.length > 0 && (
+  <div className="mt-10 group">
+    <div className="flex items-center gap-2 mb-4">
+      <div className="p-1.5 rounded-md bg-zinc-800/50 border border-zinc-700 group-hover:border-blue-500/50 transition-colors">
+        <Building2 className="w-3.5 h-3.5 text-zinc-400 group-hover:text-blue-400" />
+      </div>
+      <h3 className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.2em]">
+        Top Companies
+      </h3>
+    </div>
+
+    <div className="flex flex-wrap gap-2">
+      {problem.companyTags.map((tag, idx) => (
+        <span
+          key={idx}
+          className="relative px-3 py-1.5 text-[11px] font-semibold text-zinc-300 
+                     bg-gradient-to-b from-zinc-800/80 to-zinc-900/80
+                     border border-zinc-700/50 rounded-full
+                     shadow-[0_2px_10px_-3px_rgba(0,0,0,0.5)]
+                     hover:border-zinc-500 hover:text-white hover:scale-105
+                     transition-all duration-200 cursor-default"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
       </div>
     </motion.div>
   );
