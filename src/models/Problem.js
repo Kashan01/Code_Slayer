@@ -1,37 +1,44 @@
 import mongoose from "mongoose";
 
 const ProblemSchema = new mongoose.Schema({
-  // --- List View Fields (Existing) ---
   title: { type: String, required: true, unique: true },
   slug: { type: String, required: true, unique: true },
   difficulty: { type: String, enum: ["Easy", "Medium", "Hard"], required: true },
   category: { type: String, required: true },
   order: { type: Number, required: true, unique: true },
   videoId: { type: String, default: "" },
-  companyTags: [String],
-
-  // --- Single Problem View Fields (NEW) ---
-  description: { 
-    type: String, 
-    required: true // Can be HTML or Markdown
-  },
+  description: { type: String, required: true },
+  starterCode: { type: String, required: true },
+  
+  // Existing Examples (For display only)
   examples: [
     {
       id: Number,
       inputText: { type: String, required: true },
       outputText: { type: String, required: true },
       explanation: { type: String },
-      image: { type: String } // Optional diagram
+      image: { type: String }
     }
   ],
-  constraints: [
-    { type: String, required: true } // e.g., "2 <= nums.length <= 10^4"
-  ],
-  starterCode: { 
+  constraints: [{ type: String, required: true }],
+
+  // --- ADD THESE TWO NEW FIELDS ---
+  
+  // 1. Function Name: Tells the runner what function to call (e.g., "twoSum")
+  handlerFunction: { 
     type: String, 
-    required: true // The default code showing in the editor
-  },
-  // Future: handlerFunction and testCases for the code execution engine
+    required: true 
+  }, 
+
+  // 2. Hidden Test Cases: The actual data we feed to the code
+  testCases: [
+    {
+      input: [mongoose.Schema.Types.Mixed], // "Mixed" because inputs can be arrays, numbers, strings
+      output: mongoose.Schema.Types.Mixed   // Expected result
+    }
+  ]
+  // --------------------------------
+
 }, { timestamps: true });
 
 const Problem = mongoose.models.Problem || mongoose.model("Problem", ProblemSchema);
