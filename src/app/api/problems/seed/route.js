@@ -14,7 +14,13 @@ const dummyProblems = [
     order: 1,
     videoId: "UXDSeD9mN-k",
     description: "<p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.</p>",
-    starterCode: "function twoSum(nums, target) {\n  // Write your code here\n};",
+    // ... inside the Two Sum object
+    starterCodes: {
+      javascript: "function twoSum(nums, target) {\n  // Write your code here\n};",
+      python: "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        # Write your code here\n        pass",
+      java: "class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        // Write your code here\n        return new int[]{};\n    }\n}"
+    },
+// ...  
     handlerFunction: "twoSum",
     constraints: ["2 <= nums.length <= 10^4"],
     examples: [
@@ -41,8 +47,11 @@ const dummyProblems = [
     order: 2,
     videoId: "tG0-bQZ9zP4",
     description: "<p>Write a function that reverses a string. The input string is given as an array of characters <code>s</code>.</p>",
-    starterCode: "function reverseString(s) {\n  // Write your code here\n  return s.reverse();\n};",
-    handlerFunction: "reverseString",
+starterCodes: {
+      javascript: "function reverseString(s) {\n  // Write your code here\n  // Input is an array of characters, e.g. ['h','e','l','l','o']\n};",
+      python: "class Solution:\n    def reverseString(self, s: List[str]) -> List[str]:\n        # Write your code here\n        pass",
+      java: "class Solution {\n    public char[] reverseString(char[] s) {\n        // Write your code here\n        return new char[]{};\n    }\n}"
+    },    handlerFunction: "reverseString",
     constraints: ["1 <= s.length <= 10^5"],
     examples: [
       {
@@ -67,8 +76,11 @@ const dummyProblems = [
     order: 3,
     videoId: "yqbL18D455",
     description: "<p>Given an integer <code>x</code>, return <code>true</code> if <code>x</code> is a palindrome, and <code>false</code> otherwise.</p>",
-    starterCode: "function isPalindrome(x) {\n  // Write your code here\n};",
-    handlerFunction: "isPalindrome",
+starterCodes: {
+      javascript: "function isPalindrome(x) {\n  // Write your code here\n};",
+      python: "class Solution:\n    def isPalindrome(self, x: int) -> bool:\n        # Write your code here\n        pass",
+      java: "class Solution {\n    public boolean isPalindrome(int x) {\n        // Write your code here\n        return false;\n    }\n}"
+    },    handlerFunction: "isPalindrome",
     constraints: ["-2^31 <= x <= 2^31 - 1"],
     examples: [
       {

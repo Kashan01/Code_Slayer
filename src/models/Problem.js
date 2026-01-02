@@ -8,7 +8,11 @@ const ProblemSchema = new mongoose.Schema({
   order: { type: Number, required: true, unique: true },
   videoId: { type: String, default: "" },
   description: { type: String, required: true },
-  starterCode: { type: String, required: true },
+  starterCodes: {
+    javascript: { type: String, required: true },
+    python: { type: String, required: true },
+    java: { type: String, required: true }
+  },
   
   // Existing Examples (For display only)
   examples: [
